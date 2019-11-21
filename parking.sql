@@ -4,6 +4,7 @@ CREATE TYPE tipoVehiculo AS ENUM ('motocicleta', 'turismo', 'autocaravana');
 CREATE TYPE tipoServicioComplementario AS ENUM ('lavado', 'reparacion', 'sustitucionLunas', 'micrologistica', 'alquilerBicicletas');
 CREATE TYPE tipoEmisiones AS ENUM ('ECO', 'CERO', 'B', 'C');
 CREATE TYPE estadoSolicitud AS ENUM ('aprobado', 'pendiente', 'rechazado')
+CREATE TYPE tipoSolicitud AS ENUM ('conReserva24', 'conReservaCesionDeUso', 'sinReservaDiurno', 'sinReservaNocturno')
 
 
 DROP TABLE Aparcamiento;
@@ -69,17 +70,57 @@ CREATE TABLE RegistroEntradaSalida (
 CREATE TABLE Vehiculo (
     matricula char(20),
     modelo char(20),
-    tipo tipoVehiculo,
-    emisiones tipoEmisiones,
+    tipo tipoVehiculo NOT NULL,
+    emisiones tipoEmisiones NOT NULL,
     PRIMARY KEY (matricula),
     FOREIGN KEY (abono) REFERENCES Abono (idAbono)  /*Asi o que el abono guarde vehiculos 1..5*/
 );
 
 CREATE TABLE Solicitud(
     fecha datetime,
-    estado estadoSolicitud
-    acreditacion char()
-
-
+    estado estadoSolicitud NOT NULL,
+    acreditacion char(10000) NOT NULL,
+    tipo tipoSolicitud NOT NULL,
+    nif char(20) NOT NULL,
+    PRIMARY KEY(fecha),
+    FOREIGN KEY(usuario) REFERENCES Usuario(numId),
+    FOREIGN KEY(nombreAparcamiento) REFERENCES Aparcamiento(nombre)
 );
+
+CREATE TABLE Usuario(
+    numIdentificacion char[20],
+    nombre cahr[20] NOT NULL,
+    apellidos char[40] NOT NULL,
+    direccion char[30] NOT NULL,
+    pmr bit NOT NULL,
+    PRIMARY KEY(numIdentificador)
+);
+
+CREATE TABLE Empleado(
+    numIdentificacion char[20]
+    apellidos char[40] NOT NULL,
+    direccion char[30] NOT NULL,
+    esGestor bit,
+    PRIMARY KEY(numIdentificacion),
+    FOREIGN KEY(nombreAparcamiento) REFERENCES Aparcamiento(nombre)
+);
+
+CREATE TABLE Abono(
+    idAbono char[10],
+    precio FLOAT,
+    gastosRepercutibles FLOAT,
+    fechaInicioContrato date,
+    fechaFinContrato date,
+    fianza FLOAT,
+    mesesEnMorosidad INTEGER,
+    horaEntrada time,
+    horaSalida time,
+    
+    PRIMARY KEY(idAbono),
+    FOREIGN KEY(Vehiculo) REFERENCES Aparcamiento(matriculaVehiculo),
+    FOREIGN KEY(Plaza) REFERENCES Aparcamiento(numPlaza)
+);
+
+
+
 
