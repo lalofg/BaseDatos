@@ -27,9 +27,9 @@ CREATE TABLE Aparcamiento (
     estado estadoAparcamiento NOT NULL,
     publico bit NOT NULL,
     disuasorio bit NOT NULL,
-    tarifaMotocicletas money NOT NULL,
-    tarifaTurismos money NOT NULL,
-    tarifaAutocaravanas money NOT NULL,
+    tarifaMotocicletas FLOAT NOT NULL,
+    tarifaTurismos FLOAT NOT NULL,
+    tarifaAutocaravanas FLOAT NOT NULL,
     PRIMARY KEY (nombre)
 );
 
@@ -143,14 +143,15 @@ CREATE TABLE Abono(
 );
 
 /************************************** Aparcamiento **************************************/
-/*
-INSERT INTO Aparcamiento VALUES ('UVa', 'C/ Uno', '08:00:00', '20:00:00', 'disponible', 1, 0, 0.1, 0.1, 0.2);
-INSERT INTO Aparcamiento VALUES ('Hospital', 'C/ Dos', '08:00:00', '21:00:00', 'disponible', 1, 0, 0.1, 0.1, 0.2);
-INSERT INTO Aparcamiento VALUES ('Aparcamiento 2', 'C/ Cinco', '09:00:00', '21:00:00', 'disponible', 1, 0, 0.3, 0.1, 0.2);
-INSERT INTO Aparcamiento VALUES ('Aparcamiento 3', 'C/ Tres', '06:00:00', '22:00:00', 'limitado', 1, 0, 0.1, 0.3, 0.2);
-INSERT INTO Aparcamiento VALUES ('Aparcamiento 4', 'C/ Cuatro', '06:00:00', '23:00:00', 'suspendido', 1, 1, 0.2, 0.1, 0.2);
 
-INSERT INTO Plaza VALUES ('UVa', 1, 'residencial', 0, 1, 0, 0, 'turismo');
+INSERT INTO Aparcamiento VALUES ('UVa', 'C/ Uno', '08:00:00', '20:00:00', 'disponible', '1', '0', 0.1, 0.1, 0.2);
+INSERT INTO Aparcamiento VALUES ('Hospital', 'C/ Dos', '08:00:00', '21:00:00', 'disponible', '1', '0', 0.1, 0.1, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 2', 'C/ Cinco', '09:00:00', '21:00:00', 'disponible', '1', '0', 0.3, 0.1, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 3', 'C/ Tres', '06:00:00', '22:00:00', 'limitado', '1', '0', 0.1, 0.3, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 4', 'C/ Cuatro', '06:00:00', '23:00:00', 'suspendido', '1', '1', 0.2, 0.1, 0.2);
+
+/*
+INSERT INTO Plaza VALUES ('UVa', 1, 'residencial', '0', '1', '0', '0', 'turismo');
 INSERT INTO Plaza VALUES ('UVa', 2, 'rotacional', 0, 0, 0, 0, 'motocicleta');
 INSERT INTO Plaza VALUES ('UVa', 3, 'rotacional', 0, 1, 0, 1, 'turismo');
 INSERT INTO Plaza VALUES ('UVa', 4, 'rotacional', 1, 1, 0, 0, 'turismo');
