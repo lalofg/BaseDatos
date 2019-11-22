@@ -125,7 +125,7 @@ CREATE TABLE Solicitud(
 
 CREATE TABLE Abono(
     nombreAparcamiento char(20),
-    vehiculos char(20),
+    vehiculo char(20),
     plaza INTEGER,
     idAbono char[10],
     precio FLOAT,
@@ -146,5 +146,10 @@ CREATE TABLE Abono(
 INSERT INTO Aparcamiento VALUES ('UVa', 'C/ Uno', '08:00:00', '20:00:00', 'disponible', 1, 0, 0.1, 0.1, 0.2);
 INSERT INTO Plaza VALUES ('UVa', 1, 1, 1, 0, 0, 'turismo');
 INSERT INTO ServicioComplementario VALUE ('UVa', 'lavado', 15.3, 'UVa', 1);
+INSERT INTO Vehiculo VALUES('3180 IQL', 'Koenigsegg', 'ECO')
+INSERT INTO Vehiculo VALUES('2780 KJU', 'Lamborghini', 'CERO' )
+INSERT INTO Vehiculo VALUES('0941 YBS', 'Aston Martin', 'B')
+INSERT INTO Vehiculo VALUES('4015 WKK', 'Aston Martin', 'B')
+INSERT INTO Vehiculo VALUES('1218 XWQ', 'Ferrari', 'C')
 */
 /******************************************************************************************/
