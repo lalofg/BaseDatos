@@ -214,6 +214,15 @@ INSERT INTO Empleado VALUES('Aparcamiento 1','DNI 5' ,'Enombre 4' ,'Apellidos 7'
 INSERT INTO Empleado VALUES('Aparcamiento 2','DNI 6' ,'Enombre 5' ,'Apellidos 5', 'C/ Dos', 0);
 INSERT INTO Empleado VALUES('Aparcamiento 3','DNI 7' ,'Enombre 6' ,'Apellidos 6', 'C/ Tres', 0);
 
+INSERT INTO Usuario VALUES('DNI 8' ,'nombre 1' ,'Apellidos 8', 'C/ Tres', 0);
+INSERT INTO Usuario VALUES('DNI 8' ,'nombre 2' ,'Apellidos 9', 'C/ Cuatro', 0);
+INSERT INTO Usuario VALUES('DNI 8' ,'nombre 3' ,'Apellidos 10', 'C/ Cinco', 0);
+INSERT INTO Usuario VALUES('DNI 8' ,'nombre 4' ,'Apellidos 9', 'C/ Seis', 1);
+INSERT INTO Usuario VALUES('DNI 8' ,'nombre 5' ,'Apellidos 11', 'C/ Ocho', 0);
+
+
+
+
 
 */
 /******************************************************************************************/
