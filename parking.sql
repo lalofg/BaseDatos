@@ -49,8 +49,8 @@ CREATE TABLE Plaza (
 CREATE TABLE ServicioComplementario (
     nombreAparcamiento char(20),
     numPlaza INTEGER,
-    tipo tipoServicioComplementario,
-    precio FLOAT,
+    tipo tipoServicioComplementario NOT NULL,
+    precio FLOAT NOT NULL,
     PRIMARY KEY (tipo),
     FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre),
     FOREIGN KEY (numPlaza) REFERENCES Plaza (numPlaza)
@@ -66,7 +66,7 @@ CREATE TABLE ReclamacionesYSugerencias (
 
 CREATE TABLE Ingresos (
     nombreAparcamiento char(20),
-    fecha date,
+    fecha date NOT NULL,
     dinero  FLOAT NOT NULL,
     PRIMARY KEY (fecha),
     FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre)
@@ -77,16 +77,16 @@ CREATE TABLE Vehiculo (
     modelo char(20),
     tipo tipoVehiculo NOT NULL,
     emisiones tipoEmisiones NOT NULL,
-    PRIMARY KEY (matricula),
+    PRIMARY KEY (matricula)
 );
 
 CREATE TABLE RegistroEntradaSalida (
     nombreAparcamiento char(20),
     matrVehiculo char(20),
-    entrada datetime NOT NULL,
-    salida datetime,
+    entrada timestamp NOT NULL,
+    salida timestamp,
     importe FLOAT,                  /*CHECK si el vehiculo tiene un abolo debe ser 0*/ 
-    PRIMARY KEY (entredada),
+    PRIMARY KEY (entrada),
     FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre),
     FOREIGN KEY (matrVehiculo) REFERENCES Vehiculo (matricula)
 );
@@ -94,10 +94,10 @@ CREATE TABLE RegistroEntradaSalida (
 CREATE TABLE Empleado(
     nombreAparcamiento char(20),
     numIdentificacion char(20),
-    nombre char(20),
+    nombre char(20) NOT NULL,
     apellidos char[40] NOT NULL,
     direccion char[30] NOT NULL,
-    esGestor bit,
+    esGestor bit NOT NULL,
     PRIMARY KEY(numIdentificacion),
     FOREIGN KEY(nombreAparcamiento) REFERENCES Aparcamiento(nombre)
 );
@@ -108,38 +108,38 @@ CREATE TABLE Usuario(
     apellidos char(40) NOT NULL,
     direccion char(30) NOT NULL,
     pmr bit NOT NULL,
-    PRIMARY KEY(numIdentificador)
+    PRIMARY KEY(numIdentificacion)
 );
 
 CREATE TABLE Solicitud(
     nombreAparcamiento char(20),
     usuario char(20),
-    fecha datetime,
+    fecha timestamp,
     estado estadoSolicitud NOT NULL,
     acreditacion char(10000) NOT NULL,
     tipo tipoSolicitud NOT NULL,
     nif char(20) NOT NULL,
     PRIMARY KEY(fecha),
-    FOREIGN KEY(usuario) REFERENCES Usuario(numId),
+    FOREIGN KEY(usuario) REFERENCES Usuario(numIdentificacion),
     FOREIGN KEY(nombreAparcamiento) REFERENCES Aparcamiento(nombre)
 );
 
 CREATE TABLE Abono(
     nombreAparcamiento char(20),
     vehiculo char(20),
-    plaza INTEGER,
     idAbono char[10],
-    precio FLOAT,
-    gastosRepercutibles FLOAT,
-    fechaInicioContrato date,
-    fechaFinContrato date,
-    fianza FLOAT,
-    mesesEnMorosidad INTEGER,
+    plaza INTEGER REFERENCES Plaza(numPlaza),
+    precio FLOAT NOT NULL,
+    gastosRepercutibles FLOAT NOT NULL,
+    fechaInicioContrato date NOT NULL,
+    fechaFinContrato date NOT NULL,
+    fianza FLOAT NOT NULL,
+    mesesEnMorosidad INTEGER NOT NULL,
     horaEntrada time,
     horaSalida time,
     PRIMARY KEY(idAbono),
-    FOREIGN KEY(vehiculo) REFERENCES Aparcamiento(matriculaVehiculo),
-    FOREIGN KEY(plaza) REFERENCES Aparcamiento(numPlaza)
+    FOREIGN KEY(vehiculo) REFERENCES Vehiculo(matricula),
+    FOREIGN KEY(nombreAparcamiento) REFERENCES Aparcamiento(nombre)
 );
 
 /************************************** Aparcamiento **************************************/
