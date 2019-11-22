@@ -94,6 +94,7 @@ CREATE TABLE RegistroEntradaSalida (
 CREATE TABLE Empleado(
     nombreAparcamiento char(20),
     numIdentificacion char(20),
+    nombre char(20),
     apellidos char[40] NOT NULL,
     direccion char[30] NOT NULL,
     esGestor bit,
@@ -170,62 +171,49 @@ INSERT INTO Plaza VALUES ('Aparcamiento 4', 2, 'rotacional', 0, 0, 0, 0, 'turism
 INSERT INTO Plaza VALUES ('Aparcamiento 4', 3, 'rotacional', 0, 0, 0, 0, 'turismo');
 INSERT INTO Plaza VALUES ('Aparcamiento 4', 4, 'rotacional', 0, 0, 0, 0, 'turismo');
 
-CREATE TABLE Plaza (
-    nombreAparcamiento char(20),
-    numPlaza INTEGER,
-    tipo tipoPlaza NOT NULL,
-    accesible bit NOT NULL,
-    funcional bit NOT NULL,
-    limitada bit NOT NULL,
-    recargaElectrica bit NOT NULL,
-    tipoVehiculo tipoVehiculo NOT NULL,
-    PRIMARY KEY (numPlaza),
-    FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre)
-);
-
 INSERT INTO ServicioComplementario VALUE ('UVa',1, 'lavado', 15.3);
 INSERT INTO ServicioComplementario VALUE ('UVa',1, 'sustitucionLunas', 100.3);
 INSERT INTO ServicioComplementario VALUE ('Aparcamiento 3',3 , 'reparacion', 200.3);
 INSERT INTO ServicioComplementario VALUE ('Aparcamiento 2',4, 'lavado', 18.3);
 INSERT INTO ServicioComplementario VALUE ('Aparcamiento 2',1, 'alquilerBicicletas', 30.4);
 
-INSERT INTO Vehiculo VALUES('3180 IQL', 'Koenigsegg', 'ECO')
-INSERT INTO Vehiculo VALUES('2780 KJU', 'Lamborghini', 'CERO' )
-INSERT INTO Vehiculo VALUES('0941 YBS', 'Aston Martin', 'B')
-INSERT INTO Vehiculo VALUES('4015 WKK', 'Aston Martin', 'B')
-INSERT INTO Vehiculo VALUES('1218 XWQ', 'Ferrari', 'C')
-INSERT INTO Vehiculo VALUES('3456 XWA', NULL, 'C')
-INSERT INTO Vehiculo VALUES('5656 AVWA', NULL, 'C')
+INSERT INTO Vehiculo VALUES('3180 IQL', 'Koenigsegg', 'ECO');
+INSERT INTO Vehiculo VALUES('2780 KJU', 'Lamborghini', 'CERO' );
+INSERT INTO Vehiculo VALUES('0941 YBS', 'Aston Martin', 'B');
+INSERT INTO Vehiculo VALUES('4015 WKK', 'Aston Martin', 'B');
+INSERT INTO Vehiculo VALUES('1218 XWQ', 'Ferrari', 'C');
+INSERT INTO Vehiculo VALUES('3456 XWA', NULL, 'C');
+INSERT INTO Vehiculo VALUES('5656 AVWA', NULL, 'C');
 
-INSERT INTO ReclamacionesYSugerencias VALUES('UVA',1 , 'Lo que paso paso')
-INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Lo que paso paso')
-INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Fallo 1')
-INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',2 , 'Fallo 2')
-INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',3 , 'Fallo 3')
+INSERT INTO ReclamacionesYSugerencias VALUES('UVA',1 , 'Lo que paso paso');
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Lo que paso paso');
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Fallo 1');
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',2 , 'Fallo 2');
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',3 , 'Fallo 3');
 
-INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-21' , 50.2)
-INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-22' , 60.2)
-INSERT INTO Ingresos VALUES('Aparcamiento 2','2019-02-21' , 43.2)
-INSERT INTO Ingresos VALUES('Aparcamiento 3','2019-02-21' , 50.2)
-INSERT INTO Ingresos VALUES('UVA','2019-02-21' , 80.2)
+INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-21' , 50.2);
+INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-22' , 60.2);
+INSERT INTO Ingresos VALUES('Aparcamiento 2','2019-02-21' , 43.2);
+INSERT INTO Ingresos VALUES('Aparcamiento 3','2019-02-21' , 50.2);
+INSERT INTO Ingresos VALUES('UVA','2019-02-21' , 80.2);
 
-INSERT INTO RegistroEntrada VALUES('UVA',5656 AVWA' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3456 XWA' '3180 IQL','2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3180 IQL' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 1',3456 XWA' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
-INSERT INTO RegistroEntrada VALUES('Aparcamiento 3','2780 KJU' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('UVA',5656 AVWA' ,'2019-02-21 12:00:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3456 XWA' '3180 IQL','2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3180 IQL' ,'2019-02-21 12:00:00' ,'2019-02-21 13:00:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1',3456 XWA' ,'2019-02-21 12:00:00' ,'2019-02-21 20:00:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 23:00:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 13:30:00' , 0);
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 3','2780 KJU' ,'2019-02-21 12:00:00' ,'2019-02-21 12:35:00' , 0);
+
+INSERT INTO Empleado VALUES('UVA','DNI 1' ,'Enombre 1' ,'Apellidos 1', 'C/ Cinco', 1);
+INSERT INTO Empleado VALUES('Aparcamiento 1','DNI 1' ,'Enombre 1' ,'Apellidos 1', 'C/ Cinco', 1);
+INSERT INTO Empleado VALUES('Aparcamiento 2','DNI 2' ,'Enombre 2' ,'Apellidos 2', 'C/ Seis', 1);
+INSERT INTO Empleado VALUES('Aparcamiento 3','DNI 3' ,'Enombre 3' ,'Apellidos 3', 'C/ Siete', 1);
+INSERT INTO Empleado VALUES('Aparcamiento 4','DNI 4' ,'Enombre 2' ,'Apellidos 4', 'C/ Cuatro', 1);
+INSERT INTO Empleado VALUES('Aparcamiento 1','DNI 5' ,'Enombre 4' ,'Apellidos 7', 'C/ Siete', 0);
+INSERT INTO Empleado VALUES('Aparcamiento 2','DNI 6' ,'Enombre 5' ,'Apellidos 5', 'C/ Dos', 0);
+INSERT INTO Empleado VALUES('Aparcamiento 3','DNI 7' ,'Enombre 6' ,'Apellidos 6', 'C/ Tres', 0);
+
 
 */
 /******************************************************************************************/
-CREATE TABLE RegistroEntradaSalida (
-    nombreAparcamiento char(20),
-    matrVehiculo char(20),
-    entrada datetime NOT NULL,
-    salida datetime,
-    importe FLOAT,                  /*CHECK si el vehiculo tiene un abolo debe ser 0*/ 
-    PRIMARY KEY (entredada),
-    FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre),
-    FOREIGN KEY (matrVehiculo) REFERENCES Vehiculo (matricula)
-);
