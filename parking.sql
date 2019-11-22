@@ -144,12 +144,88 @@ CREATE TABLE Abono(
 /************************************** Aparcamiento **************************************/
 /*
 INSERT INTO Aparcamiento VALUES ('UVa', 'C/ Uno', '08:00:00', '20:00:00', 'disponible', 1, 0, 0.1, 0.1, 0.2);
-INSERT INTO Plaza VALUES ('UVa', 1, 1, 1, 0, 0, 'turismo');
-INSERT INTO ServicioComplementario VALUE ('UVa', 'lavado', 15.3, 'UVa', 1);
+INSERT INTO Aparcamiento VALUES ('Hospital', 'C/ Dos', '08:00:00', '21:00:00', 'disponible', 1, 0, 0.1, 0.1, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 2', 'C/ Cinco', '09:00:00', '21:00:00', 'disponible', 1, 0, 0.3, 0.1, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 3', 'C/ Tres', '06:00:00', '22:00:00', 'limitado', 1, 0, 0.1, 0.3, 0.2);
+INSERT INTO Aparcamiento VALUES ('Aparcamiento 4', 'C/ Cuatro', '06:00:00', '23:00:00', 'suspendido', 1, 1, 0.2, 0.1, 0.2);
+
+INSERT INTO Plaza VALUES ('UVa', 1, 'residencial', 0, 1, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('UVa', 2, 'rotacional', 0, 0, 0, 0, 'motocicleta');
+INSERT INTO Plaza VALUES ('UVa', 3, 'rotacional', 0, 1, 0, 1, 'turismo');
+INSERT INTO Plaza VALUES ('UVa', 4, 'rotacional', 1, 1, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Hospital', 1, 'rotacional', 0, 1, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Hospital', 2, 'rotacional', 0, 0, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Hospital', 3, 'rotacional', 0, 1, 0, 0, 'motocicleta');
+INSERT INTO Plaza VALUES ('Hospital', 4, 'rotacional', 1, 0, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 2', 1, 'residencial', 1, 1, 0, 1, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 2', 2, 'rotacional', 0, 1, 0, 1, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 2', 3, 'residencial', 0, 1, 0, 1, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 2', 4, 'residencial', 0, 1, 0, 1, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 3', 1, 'residencial', 0, 1, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 3', 2, 'residencial', 0, 1, 0, 0, 'motocicleta');
+INSERT INTO Plaza VALUES ('Aparcamiento 3', 3, 'residencial', 0, 1, 0, 1, 'motocicleta');
+INSERT INTO Plaza VALUES ('Aparcamiento 3', 4, 'residencial', 0, 1, 0, 0, 'autocaravana');
+INSERT INTO Plaza VALUES ('Aparcamiento 4', 1, 'rotacional', 1, 0, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 4', 2, 'rotacional', 0, 0, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 4', 3, 'rotacional', 0, 0, 0, 0, 'turismo');
+INSERT INTO Plaza VALUES ('Aparcamiento 4', 4, 'rotacional', 0, 0, 0, 0, 'turismo');
+
+CREATE TABLE Plaza (
+    nombreAparcamiento char(20),
+    numPlaza INTEGER,
+    tipo tipoPlaza NOT NULL,
+    accesible bit NOT NULL,
+    funcional bit NOT NULL,
+    limitada bit NOT NULL,
+    recargaElectrica bit NOT NULL,
+    tipoVehiculo tipoVehiculo NOT NULL,
+    PRIMARY KEY (numPlaza),
+    FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre)
+);
+
+INSERT INTO ServicioComplementario VALUE ('UVa',1, 'lavado', 15.3);
+INSERT INTO ServicioComplementario VALUE ('UVa',1, 'sustitucionLunas', 100.3);
+INSERT INTO ServicioComplementario VALUE ('Aparcamiento 3',3 , 'reparacion', 200.3);
+INSERT INTO ServicioComplementario VALUE ('Aparcamiento 2',4, 'lavado', 18.3);
+INSERT INTO ServicioComplementario VALUE ('Aparcamiento 2',1, 'alquilerBicicletas', 30.4);
+
 INSERT INTO Vehiculo VALUES('3180 IQL', 'Koenigsegg', 'ECO')
 INSERT INTO Vehiculo VALUES('2780 KJU', 'Lamborghini', 'CERO' )
 INSERT INTO Vehiculo VALUES('0941 YBS', 'Aston Martin', 'B')
 INSERT INTO Vehiculo VALUES('4015 WKK', 'Aston Martin', 'B')
 INSERT INTO Vehiculo VALUES('1218 XWQ', 'Ferrari', 'C')
+INSERT INTO Vehiculo VALUES('3456 XWA', NULL, 'C')
+INSERT INTO Vehiculo VALUES('5656 AVWA', NULL, 'C')
+
+INSERT INTO ReclamacionesYSugerencias VALUES('UVA',1 , 'Lo que paso paso')
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Lo que paso paso')
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',1 , 'Fallo 1')
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',2 , 'Fallo 2')
+INSERT INTO ReclamacionesYSugerencias VALUES('Aparcamiento 4',3 , 'Fallo 3')
+
+INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-21' , 50.2)
+INSERT INTO Ingresos VALUES('Aparcamiento 1','2019-02-22' , 60.2)
+INSERT INTO Ingresos VALUES('Aparcamiento 2','2019-02-21' , 43.2)
+INSERT INTO Ingresos VALUES('Aparcamiento 3','2019-02-21' , 50.2)
+INSERT INTO Ingresos VALUES('UVA','2019-02-21' , 80.2)
+
+INSERT INTO RegistroEntrada VALUES('UVA',5656 AVWA' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3456 XWA' '3180 IQL','2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1','3180 IQL' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 1',3456 XWA' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 2','4015 WKK' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+INSERT INTO RegistroEntrada VALUES('Aparcamiento 3','2780 KJU' ,'2019-02-21 12:00:00' ,'2019-02-21 12:00:00' , 0)
+
 */
 /******************************************************************************************/
+CREATE TABLE RegistroEntradaSalida (
+    nombreAparcamiento char(20),
+    matrVehiculo char(20),
+    entrada datetime NOT NULL,
+    salida datetime,
+    importe FLOAT,                  /*CHECK si el vehiculo tiene un abolo debe ser 0*/ 
+    PRIMARY KEY (entredada),
+    FOREIGN KEY (nombreAparcamiento) REFERENCES Aparcamiento (nombre),
+    FOREIGN KEY (matrVehiculo) REFERENCES Vehiculo (matricula)
+);
